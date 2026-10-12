@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="References and learning resources used for the Evolution of HTTP project.">
+    <title>References &amp; Resources | The Evolution of HTTP</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <!-- Site header with title and main navigation -->
+    <header>
+        <p class="site-title">The Evolution of HTTP <span>| IT 3203 Project</span></p>
+
+        <!-- Main navigation -->
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="how-http-works.html">How HTTP Works</a></li>
+                <li><a href="evolution.html">Evolution</a></li>
+                <li><a href="concepts.html">Key Concepts</a></li>
+                <li><a href="resources.html" class="current">Resources</a></li>
+                <li><a href="about.html">About</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+
+        <h1>References &amp; Resources</h1>
+        <p class="page-intro">The sources behind this research. All pages were accessed September 2, 2026.</p>
+
+        <!-- Reference list from the Assignment 1 presentation -->
+        <section>
+            <h2>References</h2>
+            <ol class="reference-list">
+                <li>
+                    MDN Web Docs (Mozilla). "Evolution of HTTP." <em>MDN Web Docs</em>.
+                    <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Guides/Evolution_of_HTTP">https://developer.mozilla.org/en-US/docs/Web/HTTP/Guides/Evolution_of_HTTP</a>
+                    <span class="used-for">Used for: features and dates of each HTTP version, RFC numbers, and SPDY.</span>
+                </li>
+                <li>
+                    MDN Web Docs (Mozilla). "An overview of HTTP." <em>MDN Web Docs</em>.
+                    <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Guides/Overview">https://developer.mozilla.org/en-US/docs/Web/HTTP/Guides/Overview</a>
+                    <span class="used-for">Used for: clients, servers and proxies, request and response structure, methods, status codes, headers, statelessness and cookies.</span>
+                </li>
+                <li>
+                    Amazon Web Services. "What's the Difference Between HTTP and HTTPS?" <em>AWS</em>.
+                    <a href="https://aws.amazon.com/compare/the-difference-between-https-and-http/">https://aws.amazon.com/compare/the-difference-between-https-and-http/</a>
+                    <span class="used-for">Used for: why plain HTTP is insecure, HTTPS and TLS, ports 80 and 443, and certificates.</span>
+                </li>
+                <li>
+                    Cloudflare. "HTTP/2 vs. HTTP/1.1: How do they affect web performance?" <em>Cloudflare Learning Center</em>.
+                    <a href="https://www.cloudflare.com/learning/performance/http2-vs-http1.1/">https://www.cloudflare.com/learning/performance/http2-vs-http1.1/</a>
+                    <span class="used-for">Used for: multiplexing, prioritization, server push, header compression, and HTTP/1.1 blocking.</span>
+                </li>
+                <li>
+                    Cloudflare. "Cloudflare and the IETF." <em>The Cloudflare Blog</em>.
+                    <a href="https://blog.cloudflare.com/cloudflare-and-the-ietf/">https://blog.cloudflare.com/cloudflare-and-the-ietf/</a>
+                    <span class="used-for">Used for: the role of the IETF and how internet standards are made.</span>
+                </li>
+                <li>
+                    F5, Inc. "QUIC and HTTP/3." <em>F5 Glossary</em>.
+                    <a href="https://www.f5.com/glossary/quic-http3">https://www.f5.com/glossary/quic-http3</a>
+                    <span class="used-for">Used for: QUIC over UDP, built-in TLS 1.3, fewer round trips, head-of-line blocking, and connection migration.</span>
+                </li>
+                <li>
+                    CERN. "A short history of the Web." <em>CERN</em>.
+                    <a href="https://home.cern/science/computing/the-birth-of-the-web/short-history-web/">https://home.cern/science/computing/the-birth-of-the-web/short-history-web/</a>
+                    <span class="used-for">Used for: Tim Berners-Lee's 1989 proposal, the first server and website, and the 1993 royalty-free release.</span>
+                </li>
+                <li>
+                    Internet Engineering Task Force (IETF). RFC 1945, RFC 2068, RFC 2616, RFC 7230&ndash;7235, RFC 7540, RFC 8446, RFC 9000, RFC 9110&ndash;9112, RFC 9114. <em>RFC Editor</em>.
+                    <a href="https://www.rfc-editor.org/">https://www.rfc-editor.org/</a>
+                    <span class="used-for">Used for: checking the publication dates and RFC numbers for each version of HTTP, TLS 1.3 and QUIC.</span>
+                </li>
+            </ol>
+        </section>
+
+        <!-- Learning resources for readers who want more -->
+        <section>
+            <h2>Learning Resources</h2>
+            <p>If you want to go further, these are good places to start. They come from the same organizations used in the research above.</p>
+            <ul>
+                <li>
+                    <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP">MDN Web Docs &ndash; HTTP</a>
+                    &ndash; Mozilla's full HTTP section, including reference pages for every method, status code and header.
+                </li>
+                <li>
+                    <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Guides/Overview">MDN &ndash; An overview of HTTP</a>
+                    &ndash; the best beginner explanation I found of how requests and responses work.
+                </li>
+                <li>
+                    <a href="https://www.cloudflare.com/learning/">Cloudflare Learning Center</a>
+                    &ndash; short, readable articles on HTTP, DNS, TLS and networking.
+                </li>
+                <li>
+                    <a href="http://info.cern.ch/hypertext/WWW/TheProject.html">The first website (info.cern.ch)</a>
+                    &ndash; the original page from 1990/91, still online at its original address.
+                </li>
+                <li>
+                    <a href="https://www.rfc-editor.org/rfc/rfc9110">RFC 9110 &ndash; HTTP Semantics</a>
+                    &ndash; the current official definition of methods, status codes and headers. It's long, but it's the real source.
+                </li>
+            </ul>
+
+            <h3>Try it yourself</h3>
+            <p>
+                You can see real HTTP traffic in any browser. Press F12 to open developer tools,
+                go to the Network tab, reload the page, and click a request to see its method,
+                status code and headers. If you have a terminal, <code>curl -v https://example.com/</code>
+                prints the whole request and response.
+            </p>
+        </section>
+
+    </main>
+
+    <!-- Footer with required class project note -->
+    <footer>
+        <p>This website is a student project created for IT 3203 &ndash; Introduction to Web Development at Kennesaw State University.</p>
+        <p>Course website: <a href="https://ksuweb.github.io/IT3203/">ksuweb.github.io/IT3203</a></p>
+        <p>&copy; 2026 Emmanuel Orji</p>
+    </footer>
+
+</body>
+</html>

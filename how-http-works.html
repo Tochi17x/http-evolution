@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="How HTTP works: clients and servers, the request-response cycle, methods, status codes and headers.">
+    <title>How HTTP Works | The Evolution of HTTP</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <!-- Site header with title and main navigation -->
+    <header>
+        <p class="site-title">The Evolution of HTTP <span>| IT 3203 Project</span></p>
+
+        <!-- Main navigation -->
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="how-http-works.html" class="current">How HTTP Works</a></li>
+                <li><a href="evolution.html">Evolution</a></li>
+                <li><a href="concepts.html">Key Concepts</a></li>
+                <li><a href="resources.html">Resources</a></li>
+                <li><a href="about.html">About</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+
+        <h1>How HTTP Works</h1>
+        <p class="page-intro">What actually happens between your browser and a website.</p>
+
+        <!-- What HTTP is -->
+        <section>
+            <h2>What Is HTTP?</h2>
+            <p>
+                HTTP stands for <strong>HyperText Transfer Protocol</strong>. Breaking the name down:
+            </p>
+            <ul>
+                <li><strong>HyperText</strong> &ndash; text that contains links to other documents</li>
+                <li><strong>Transfer</strong> &ndash; moving those documents between computers</li>
+                <li><strong>Protocol</strong> &ndash; the agreed rules for doing it</li>
+            </ul>
+            <p>
+                HTTP is an <em>application-layer</em> protocol. It defines what the messages mean
+                and leaves the job of physically delivering them to the network underneath.
+                Every time you load a page, click a link or submit a form, your browser is sending
+                HTTP messages for you. One nice thing about HTTP is that the messages are plain,
+                readable text, so developers can look at them directly when something breaks.
+            </p>
+        </section>
+
+        <!-- Internet vs. Web -->
+        <section>
+            <h2>The Internet vs. the World Wide Web</h2>
+            <p>
+                People use these words like they mean the same thing, but they don't. A good way
+                to think about it is that the Internet is the road network and the Web is one
+                kind of traffic on it.
+            </p>
+            <ul>
+                <li>
+                    <strong>The Internet</strong> is the global network of physical connections
+                    (cables, fiber, Wi-Fi, mobile) that moves data between computers. It also carries
+                    email, video calls, games and file transfers, and it existed for years before the Web.
+                </li>
+                <li>
+                    <strong>The World Wide Web</strong> is a system of linked documents that runs on top
+                    of the Internet. Tim Berners-Lee invented it at CERN in 1989.
+                </li>
+            </ul>
+            <p>The Web depends on three inventions that still work together every time you open a page:</p>
+            <ol>
+                <li><strong>HTML</strong> &ndash; the format pages are written in</li>
+                <li><strong>URL</strong> &ndash; the address system, so every page and file has a unique address</li>
+                <li><strong>HTTP</strong> &ndash; the rules for moving those pages from a server to your browser</li>
+            </ol>
+        </section>
+
+        <!-- Client and server -->
+        <section>
+            <h2>Clients and Servers</h2>
+            <p>
+                HTTP splits the Web into two roles. The <strong>client</strong> (also called the
+                user agent) is the program acting for the user. Most of the time that is a web
+                browser, but it can also be a mobile app or a search engine crawler. The
+                <strong>server</strong> is the machine that stores or generates the resources and
+                hands them out when asked.
+            </p>
+            <p>Two rules come straight from this split:</p>
+            <ul>
+                <li>
+                    <strong>The server cannot start the conversation.</strong> The client always sends
+                    the request first. A website can't push a page onto your screen out of nowhere.
+                </li>
+                <li>
+                    <strong>One page means many requests.</strong> A web page is not one file. The
+                    browser gets the HTML first, then sends new requests for every image, stylesheet
+                    and script that the HTML mentions.
+                </li>
+            </ul>
+            <p>
+                Requests often pass through <strong>proxies</strong> along the way. A proxy might
+                cache a copy of a popular file, filter content, or spread traffic across several
+                servers. Usually neither the browser nor the server notices it is there.
+            </p>
+        </section>
+
+        <!-- Request-response cycle -->
+        <section>
+            <h2>The Request-Response Cycle</h2>
+            <p>Everything HTTP does comes down to this four-step loop:</p>
+            <ol>
+                <li><strong>Open a connection.</strong> The client connects to the server. HTTP/1.1 and HTTP/2 use TCP, and HTTP/3 uses QUIC.</li>
+                <li><strong>Send a request.</strong> The client sends a message with a method, the path it wants, the HTTP version and some headers.</li>
+                <li><strong>Read the response.</strong> The server replies with a status code, its own headers, and usually a body with the content.</li>
+                <li><strong>Close or reuse the connection.</strong> Since HTTP/1.1, the connection can stay open for the next request.</li>
+            </ol>
+        </section>
+
+        <!-- What happens when you enter a URL -->
+        <section>
+            <h2>What Happens When You Enter a URL</h2>
+            <p>Say you type <code>https://example.com/index.html</code> and press Enter. This all happens in well under a second:</p>
+            <ol>
+                <li>The browser splits the URL into a scheme (<code>https</code>), a host name (<code>example.com</code>) and a path (<code>/index.html</code>).</li>
+                <li>Computers route by IP address, not by name, so the browser asks DNS (the Domain Name System) to translate <code>example.com</code> into an IP address.</li>
+                <li>The browser connects to that address on port 443 (the HTTPS port) and does a TLS handshake so the traffic is encrypted.</li>
+                <li>The browser sends the HTTP request: <code>GET /index.html HTTP/1.1</code> plus headers.</li>
+                <li>The server sends back a status line like <code>HTTP/1.1 200 OK</code>, headers, and the HTML of the page.</li>
+                <li>The browser reads the HTML and sends more requests for each stylesheet, script, font and image, then draws the page.</li>
+            </ol>
+            <div class="note">
+                <p>Only steps 4 and 5 are actually HTTP. The other steps are the supporting pieces HTTP depends on.</p>
+            </div>
+        </section>
+
+        <!-- HTTP requests -->
+        <section>
+            <h2>HTTP Requests</h2>
+            <p>Here is what a simple GET request looks like. All of it is ordinary text sent over the network:</p>
+
+<pre><code>GET /index.html HTTP/1.1
+Host: example.com
+User-Agent: Mozilla/5.0 (Windows NT 10.0)
+Accept: text/html
+Accept-Language: en-US</code></pre>
+
+            <ul>
+                <li><strong>First line:</strong> the method (<code>GET</code>), the path of the resource (<code>/index.html</code>) and the HTTP version.</li>
+                <li><strong>Headers:</strong> name-and-value lines saying which site is wanted, what software is asking, and which formats it accepts.</li>
+                <li><strong>Body:</strong> a GET request has no body because it is only asking for something. Requests that send data, like POST, add a blank line and then the data.</li>
+            </ul>
+            <p>
+                The <code>Host</code> header matters more than it looks. One server usually hosts
+                many websites on the same IP address, and <code>Host</code> tells it which one you
+                want. HTTP/1.1 made it required.
+            </p>
+        </section>
+
+        <!-- HTTP responses -->
+        <section>
+            <h2>HTTP Responses</h2>
+            <p>The server's answer has the same general shape, but starts with a status line:</p>
+
+<pre><code>HTTP/1.1 200 OK
+Date: Tue, 02 Sep 2025 14:28:02 GMT
+Server: Apache
+Content-Type: text/html; charset=UTF-8
+Content-Length: 1256
+
+&lt;!DOCTYPE html&gt; ... the page itself ...</code></pre>
+
+            <ul>
+                <li><strong>Status line:</strong> the version, a three-digit status code and a short message. <code>200 OK</code> means it worked.</li>
+                <li><strong>Headers:</strong> information about the answer, like when it was made and what type of data the body holds.</li>
+                <li><strong>Blank line, then body:</strong> everything after the empty line is the actual content.</li>
+            </ul>
+            <p>
+                <code>Content-Type</code> is probably the most important response header. It tells the
+                browser what it is receiving. <code>text/html</code> means show it as a web page and
+                <code>image/png</code> means draw a picture.
+            </p>
+        </section>
+
+        <!-- HTTP methods -->
+        <section>
+            <h2>HTTP Methods</h2>
+            <p>The method is the first word of a request. It tells the server what kind of action the client wants.</p>
+
+            <!-- Table of common HTTP methods -->
+            <table>
+                <thead>
+                    <tr>
+                        <th>Method</th>
+                        <th>What it does</th>
+                        <th>Everyday example</th>
+                        <th>Changes data?</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><code>GET</code></td>
+                        <td>Retrieves a resource. This is the most common method.</td>
+                        <td>Opening a news article or loading an image</td>
+                        <td>No</td>
+                    </tr>
+                    <tr>
+                        <td><code>POST</code></td>
+                        <td>Sends data to the server so it can create or process something.</td>
+                        <td>Submitting a sign-up form or posting a comment</td>
+                        <td>Yes</td>
+                    </tr>
+                    <tr>
+                        <td><code>PUT</code></td>
+                        <td>Replaces an existing resource with the data sent.</td>
+                        <td>Overwriting a saved document with a new version</td>
+                        <td>Yes</td>
+                    </tr>
+                    <tr>
+                        <td><code>DELETE</code></td>
+                        <td>Removes the resource at the given address.</td>
+                        <td>Deleting a photo from an online album</td>
+                        <td>Yes</td>
+                    </tr>
+                    <tr>
+                        <td><code>HEAD</code></td>
+                        <td>Asks for only the headers, without the body.</td>
+                        <td>Checking if a large file changed before downloading it</td>
+                        <td>No</td>
+                    </tr>
+                </tbody>
+            </table>
+            <p>
+                GET and HEAD only read data, which is why a browser can safely load them again.
+                POST, PUT and DELETE change things on the server. That is why refreshing a page right
+                after submitting a form gives you a warning.
+            </p>
+        </section>
+
+        <!-- HTTP status codes -->
+        <section>
+            <h2>HTTP Status Codes</h2>
+            <p>Every response has a three-digit code. The first digit tells you which category it falls into:</p>
+            <ul>
+                <li><strong>1xx Informational</strong> &ndash; the request was received and is still being processed. Rare in normal browsing.</li>
+                <li><strong>2xx Success</strong> &ndash; it worked. Example: <code>200 OK</code>.</li>
+                <li><strong>3xx Redirection</strong> &ndash; the resource is somewhere else. Example: <code>301 Moved Permanently</code>.</li>
+                <li><strong>4xx Client error</strong> &ndash; the request was the problem. Example: <code>404 Not Found</code>.</li>
+                <li><strong>5xx Server error</strong> &ndash; the request was fine, but the server failed. Example: <code>500 Internal Server Error</code>.</li>
+            </ul>
+            <p>
+                Because the categories are fixed, a browser that gets a code it has never seen before
+                still knows what kind of result it is from the first digit.
+            </p>
+
+            <figure>
+                <img src="images/mdn-404-page.png" alt="Screenshot of the MDN Web Docs website showing a Page not found message for the address /this-page-does-not-exist." width="1280" height="410">
+                <figcaption>A real 404 page from MDN Web Docs, captured for my Assignment 1 presentation. The server is working fine; there is just nothing at that address.</figcaption>
+            </figure>
+        </section>
+
+        <!-- HTTP headers -->
+        <section>
+            <h2>HTTP Headers</h2>
+            <p>
+                Headers are simple <code>Name: value</code> lines that carry everything except the
+                content itself. They are a big reason HTTP has lasted so long. When a new feature is
+                needed, it can usually be added as a new header instead of a whole new protocol.
+                Cookies, caching and many security protections were all added this way.
+            </p>
+            <h3>Common request headers (sent by the browser)</h3>
+            <ul>
+                <li><code>Host</code> &ndash; which website is wanted on this server</li>
+                <li><code>User-Agent</code> &ndash; which browser and operating system is asking</li>
+                <li><code>Accept</code> &ndash; which content formats the browser can handle</li>
+                <li><code>Cookie</code> &ndash; sends back data the site stored earlier, which is how you stay logged in</li>
+            </ul>
+            <h3>Common response headers (sent by the server)</h3>
+            <ul>
+                <li><code>Content-Type</code> &ndash; what the body is (HTML, JSON, an image, etc.)</li>
+                <li><code>Content-Length</code> &ndash; how many bytes the body contains</li>
+                <li><code>Cache-Control</code> &ndash; how long the browser can reuse this copy</li>
+                <li><code>Set-Cookie</code> &ndash; asks the browser to store a value for later</li>
+                <li><code>Location</code> &ndash; used with a 3xx code to give the new address</li>
+            </ul>
+            <p>
+                You can see real headers yourself: press F12 in Chrome, Edge or Firefox, open the
+                Network tab, reload a page, and click any request.
+            </p>
+        </section>
+
+    </main>
+
+    <!-- Footer with required class project note -->
+    <footer>
+        <p>This website is a student project created for IT 3203 &ndash; Introduction to Web Development at Kennesaw State University.</p>
+        <p>Course website: <a href="https://ksuweb.github.io/IT3203/">ksuweb.github.io/IT3203</a></p>
+        <p>&copy; 2026 Emmanuel Orji</p>
+    </footer>
+
+</body>
+</html>

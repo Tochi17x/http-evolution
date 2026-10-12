@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="A student research website about the history of HTTP, the protocol browsers and web servers use to communicate.">
+    <title>Home | The Evolution of HTTP</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <!-- Site header with title and main navigation -->
+    <header>
+        <p class="site-title">The Evolution of HTTP <span>| IT 3203 Project</span></p>
+
+        <!-- Main navigation -->
+        <nav>
+            <ul>
+                <li><a href="index.html" class="current">Home</a></li>
+                <li><a href="how-http-works.html">How HTTP Works</a></li>
+                <li><a href="evolution.html">Evolution</a></li>
+                <li><a href="concepts.html">Key Concepts</a></li>
+                <li><a href="resources.html">Resources</a></li>
+                <li><a href="about.html">About</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+
+        <!-- Cover / title section -->
+        <section id="cover">
+            <h1>The Evolution of HTTP</h1>
+            <p class="subtitle">How the Web Communicates</p>
+            <p>A research project by Emmanuel Orji &middot; IT 3203, Fall 2026</p>
+        </section>
+
+        <!-- Introduction / abstract -->
+        <section>
+            <h2>Introduction</h2>
+            <p>
+                Every time you open a website, your browser and a web server have a short
+                conversation. The rules for that conversation are called <strong>HTTP</strong>,
+                the HyperText Transfer Protocol. HTTP is how a browser asks a server for a page,
+                and how the server answers.
+            </p>
+            <p>
+                This site covers how HTTP works, where it came from, and how it has changed
+                since Tim Berners-Lee created it at CERN around 1990. The main thing I learned
+                while researching it is that HTTP has never really changed <em>what</em> it says.
+                A client still asks for a resource and a server still answers with a status code,
+                headers and content. What has changed over more than thirty years is how fast and
+                how securely that conversation travels across the network.
+            </p>
+
+            <figure>
+                <img src="images/http-request-response.png" alt="Diagram of a client (web browser) sending an HTTP request, GET /index.html, to a server, and the server sending back an HTTP response, 200 OK." width="800" height="300">
+                <figcaption>The basic idea behind HTTP: the client sends a request and the server sends back a response.</figcaption>
+            </figure>
+        </section>
+
+        <!-- Why HTTP matters -->
+        <section>
+            <h2>Why HTTP Is Important</h2>
+            <p>
+                The Internet is the network of cables, Wi-Fi and mobile links that moves data between
+                computers. The World Wide Web is one service that runs on top of it, and HTTP is the
+                protocol that makes the Web work. Without an agreed set of rules, a phone made by one
+                company could not load a page from a Linux server made by another.
+            </p>
+            <ul>
+                <li>Every page, image, video and form you use in a browser travels as HTTP messages.</li>
+                <li>Mobile apps, smart devices and cloud services also talk to each other over HTTP.</li>
+                <li>HTTPS (HTTP with encryption) is what protects passwords and payment details online.</li>
+                <li>HTTP is an open standard, so no single company owns it and anyone can build on it.</li>
+            </ul>
+        </section>
+
+        <!-- Progression of HTTP versions -->
+        <section>
+            <h2>Five Versions in About Thirty Years</h2>
+            <p>HTTP has been rewritten several times. Each version kept the same basic idea and fixed problems with the one before it.</p>
+
+            <ul class="version-row">
+                <li>HTTP/0.9</li>
+                <li class="arrow">&rarr;</li>
+                <li>HTTP/1.0</li>
+                <li class="arrow">&rarr;</li>
+                <li>HTTP/1.1</li>
+                <li class="arrow">&rarr;</li>
+                <li>HTTP/2</li>
+                <li class="arrow">&rarr;</li>
+                <li>HTTP/3</li>
+            </ul>
+
+            <p>
+                The early versions (0.9, 1.0 and 1.1) added <em>meaning</em> to the protocol: headers,
+                status codes, more methods and reusable connections. The newer versions (HTTP/2 and
+                HTTP/3) did not change what the messages mean. They changed <em>how</em> the messages
+                are delivered so pages load faster and more reliably. The full story is on the
+                <a href="evolution.html">Evolution</a> page.
+            </p>
+        </section>
+
+        <!-- Key terms -->
+        <section>
+            <h2>Key Terms</h2>
+            <dl class="terms">
+                <div>
+                    <dt>Client</dt>
+                    <dd>The program that sends the request, usually a web browser.</dd>
+                </div>
+                <div>
+                    <dt>Server</dt>
+                    <dd>The machine that stores or creates the resource and sends it back.</dd>
+                </div>
+                <div>
+                    <dt>Request / Response</dt>
+                    <dd>The message the client sends, and the answer the server returns.</dd>
+                </div>
+                <div>
+                    <dt>Status Code</dt>
+                    <dd>A three-digit number reporting the result, like 200 (OK) or 404 (Not Found).</dd>
+                </div>
+                <div>
+                    <dt>Header</dt>
+                    <dd>A name-and-value line with extra information about a message.</dd>
+                </div>
+                <div>
+                    <dt>HTTPS / TLS</dt>
+                    <dd>HTTP sent through an encrypted TLS connection so others cannot read it.</dd>
+                </div>
+            </dl>
+        </section>
+
+        <!-- Table of contents -->
+        <section>
+            <h2>Table of Contents</h2>
+            <ol class="toc">
+                <li><a href="how-http-works.html">How HTTP Works</a> &ndash; clients, servers, requests, responses, methods, status codes and headers.</li>
+                <li><a href="evolution.html">Evolution of HTTP</a> &ndash; from CERN in 1989 to HTTP/3 and QUIC in 2022.</li>
+                <li><a href="concepts.html">Key Concepts</a> &ndash; seven ideas you need to understand HTTP.</li>
+                <li><a href="resources.html">References &amp; Resources</a> &ndash; the sources used for this research.</li>
+                <li><a href="about.html">About</a> &ndash; about me and about this project.</li>
+            </ol>
+        </section>
+
+    </main>
+
+    <!-- Footer with required class project note -->
+    <footer>
+        <p>This website is a student project created for IT 3203 &ndash; Introduction to Web Development at Kennesaw State University.</p>
+        <p>Course website: <a href="https://ksuweb.github.io/IT3203/">ksuweb.github.io/IT3203</a></p>
+        <p>&copy; 2026 Emmanuel Orji</p>
+    </footer>
+
+</body>
+</html>

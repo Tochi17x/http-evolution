@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="The history of HTTP from Tim Berners-Lee at CERN to HTTP/3 and QUIC.">
+    <title>Evolution of HTTP | The Evolution of HTTP</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <!-- Site header with title and main navigation -->
+    <header>
+        <p class="site-title">The Evolution of HTTP <span>| IT 3203 Project</span></p>
+
+        <!-- Main navigation -->
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="how-http-works.html">How HTTP Works</a></li>
+                <li><a href="evolution.html" class="current">Evolution</a></li>
+                <li><a href="concepts.html">Key Concepts</a></li>
+                <li><a href="resources.html">Resources</a></li>
+                <li><a href="about.html">About</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Main content for HTTP history -->
+    <main>
+
+        <h1>The Evolution of HTTP</h1>
+        <p class="page-intro">From a one-line protocol at a physics lab to the encrypted, multiplexed HTTP/3 we use today.</p>
+
+        <!-- Origins at CERN -->
+        <section>
+            <h2>Where It Started: Tim Berners-Lee and CERN</h2>
+            <p>
+                The Web wasn't built to sell things or share photos. It was built to fix an
+                information problem at CERN, the European particle physics lab near Geneva. CERN
+                worked with more than 17,000 scientists at universities all over the world, and
+                their documents were spread across different computer systems that couldn't read
+                each other's files.
+            </p>
+            <p>
+                In March 1989, Tim Berners-Lee, a British scientist at CERN, wrote a proposal for
+                an information-sharing system built on <em>hypertext</em>, meaning documents that
+                link directly to other documents anywhere on the network. In November 1990 he and
+                Belgian engineer Robert Cailliau formalized the idea, and by the end of that year
+                CERN had:
+            </p>
+            <ul>
+                <li><strong>The first web server</strong> &ndash; a NeXT computer in Berners-Lee's office with a handwritten label: "This machine is a server. DO NOT POWER IT DOWN!!"</li>
+                <li><strong>The first website</strong> &ndash; info.cern.ch, a page explaining the project itself</li>
+                <li><strong>The first browser</strong> &ndash; a program called WorldWideWeb that could both read and edit pages</li>
+            </ul>
+            <p>
+                HTTP was the "transfer" part of that system. Its first job was just to hand a
+                hypertext file from that NeXT machine to whoever asked for it, which explains why
+                the first version was so small.
+            </p>
+
+            <figure>
+                <img src="images/first-web-page.png" alt="Screenshot of the first website at info.cern.ch, a plain page titled World Wide Web with black text and blue underlined links and no images or styling." width="1100" height="490">
+                <figcaption>
+                    The first web page is still online at
+                    <a href="http://info.cern.ch/hypertext/WWW/TheProject.html">info.cern.ch</a>.
+                    It is only text and links because that is all HTTP/0.9 could send.
+                    (Screenshot from my Assignment 1 presentation.)
+                </figcaption>
+            </figure>
+        </section>
+
+        <!-- HTTP/0.9 -->
+        <section>
+            <h2>HTTP/0.9 &ndash; The One-Line Protocol (1991)</h2>
+            <p>
+                The original version was so simple it didn't even have a version number. The name
+                "HTTP/0.9" was given to it later. A request was one line: the word GET and the path
+                of the document. The server sent back the file, then closed the connection.
+            </p>
+<pre><code>GET /mypage.html</code></pre>
+            <p>What it did <em>not</em> have:</p>
+            <ul>
+                <li>No version number, so there was no way to negotiate future changes</li>
+                <li>No headers, so neither side could send any extra information</li>
+                <li>No status codes. If something went wrong, the server could only send back an HTML page describing the error</li>
+                <li>Only HTML files, with no images, downloads or video</li>
+                <li>Only GET, so there was no way to send data to a server</li>
+            </ul>
+            <p>Pretty much everything HTTP does today is a fix for something on that list.</p>
+        </section>
+
+        <!-- HTTP/1.0 -->
+        <section>
+            <h2>HTTP/1.0 &ndash; Making It Extensible (1996)</h2>
+            <p>
+                HTTP/1.0 was documented in 1996 as <strong>RFC 1945</strong>. It was an informational
+                document that described what browsers and servers were already doing, since many
+                different versions were in use by then. The big additions were:
+            </p>
+            <ul>
+                <li><strong>Version numbers</strong> on every request</li>
+                <li><strong>Status codes</strong>, so software could tell success from failure without reading the page</li>
+                <li><strong>Headers</strong> on both requests and responses</li>
+                <li><strong>Content-Type</strong>, which let HTTP carry images, sound and files, not just HTML</li>
+            </ul>
+<pre><code>GET /mypage.html HTTP/1.0
+User-Agent: NCSA_Mosaic/2.0 (Windows 3.1)
+
+HTTP/1.0 200 OK
+Date: Tue, 15 Nov 1994 08:12:31 GMT
+Server: CERN/3.0 libwww/2.17
+Content-Type: text/html</code></pre>
+            <p>
+                The problem it left behind: every request opened its own connection, and that
+                connection closed right after the response. A page with twenty images meant twenty
+                separate connections, each one paying the full setup cost.
+            </p>
+        </section>
+
+        <!-- HTTP/1.1 -->
+        <section>
+            <h2>HTTP/1.1 &ndash; The Long-Running Standard (1997)</h2>
+            <p>
+                HTTP/1.1 came out in January 1997 as <strong>RFC 2068</strong>, only months after
+                HTTP/1.0. It is still in use today. The main improvements were:
+            </p>
+            <ul>
+                <li><strong>Persistent connections</strong> &ndash; one connection can be reused for several requests</li>
+                <li><strong>Pipelining</strong> &ndash; a second request can be sent before the first response arrives</li>
+                <li><strong>Chunked transfer</strong> &ndash; a server can start sending a response before it knows the total size</li>
+                <li><strong>Required Host header</strong> &ndash; lets one server with one IP address host many websites, which made shared hosting possible</li>
+                <li><strong>Better caching</strong> and <strong>content negotiation</strong> (agreeing on language, encoding and file type)</li>
+            </ul>
+            <p>
+                Instead of being replaced, HTTP/1.1 kept getting revised: RFC 2616 in 1999,
+                RFC 7230&ndash;7235 in 2014, and RFC 9110&ndash;9112 in 2022. HTTP/1.1 basically got
+                the vocabulary right. The methods, status codes and headers worked well enough that
+                the next two versions only changed how messages travel, not what they say.
+            </p>
+        </section>
+
+        <!-- Problems with HTTP/1.1 -->
+        <section>
+            <h2>Problems with HTTP/1.1</h2>
+            <p>
+                By the 2010s a single web page could need dozens of files, and the way HTTP/1.1
+                fetched them turned into the bottleneck.
+            </p>
+            <ul>
+                <li>
+                    <strong>Head-of-line blocking.</strong> Resources load one after another on a
+                    connection. If one file is slow, everything behind it waits, even small files
+                    that are ready to go.
+                </li>
+                <li>
+                    <strong>Six connections per site.</strong> Browsers worked around this by opening
+                    up to six TCP connections at once. It helped, but every connection costs memory
+                    and setup time, and six is still a hard limit.
+                </li>
+                <li>
+                    <strong>Repeated headers.</strong> Every request re-sends almost the same headers
+                    (same User-Agent, same cookies), which wastes a lot of bandwidth.
+                </li>
+                <li>
+                    <strong>Pipelining didn't work in practice.</strong> Responses still had to come
+                    back in order, so browsers mostly turned it off.
+                </li>
+            </ul>
+            <p>
+                Developers ended up using workarounds like combining images into one "sprite" file
+                or splitting a site across several domains just to get around these limits.
+            </p>
+        </section>
+
+        <!-- HTTP/2 -->
+        <section>
+            <h2>HTTP/2 &ndash; Rebuilt for Speed (2015)</h2>
+            <p>
+                HTTP/2 was standardized in May 2015 as <strong>RFC 7540</strong>. It was based on
+                Google's experimental protocol called SPDY. It changed how messages travel, but
+                not what they mean.
+            </p>
+            <ul>
+                <li><strong>Binary framing</strong> &ndash; messages are sent as binary frames instead of plain text, which is faster for computers to process</li>
+                <li><strong>Multiplexing</strong> &ndash; many requests and responses travel over one connection at the same time, so nothing has to wait in line</li>
+                <li><strong>Header compression (HPACK)</strong> &ndash; repeated headers are compressed instead of re-sent in full</li>
+                <li><strong>Stream prioritization</strong> &ndash; important content, like article text, can be sent before less important content</li>
+                <li><strong>Server push</strong> &ndash; the server can send files it knows the page will need before the browser asks</li>
+            </ul>
+            <div class="note">
+                <p>
+                    Cloudflare explains multiplexing with an analogy that helped me: imagine mailing
+                    someone a novel. HTTP/1.1 is like sending one chapter and waiting for them to
+                    confirm it arrived before sending the next. HTTP/2 is like numbering every chapter
+                    and mailing them all at once, and letting the reader sort them.
+                </p>
+            </div>
+            <p>
+                Websites didn't have to change anything to use it. Existing URLs, methods and status
+                codes all worked the same, so adopting HTTP/2 was just a server and browser upgrade.
+            </p>
+        </section>
+
+        <!-- HTTP/3 and QUIC -->
+        <section>
+            <h2>HTTP/3 and QUIC (2022)</h2>
+            <p>
+                HTTP/2 fixed head-of-line blocking inside HTTP, but all of its streams still shared
+                one TCP connection. TCP delivers data strictly in order, so if one packet gets lost,
+                TCP holds back <em>everything</em> behind it and every stream stalls.
+            </p>
+            <p>
+                HTTP/3, standardized in June 2022 as <strong>RFC 9114</strong>, solves this by
+                replacing TCP with <strong>QUIC</strong> (RFC 9000, 2021). QUIC runs over UDP and
+                handles streams itself, so a lost packet only stalls the stream it belonged to.
+            </p>
+            <ul>
+                <li><strong>Per-stream loss recovery</strong> &ndash; other streams keep moving when one packet is lost</li>
+                <li><strong>TLS 1.3 built in</strong> &ndash; encryption is part of QUIC itself, so there is no unencrypted HTTP/3</li>
+                <li><strong>Fewer round trips</strong> &ndash; the connection setup and encryption handshake happen in one step</li>
+                <li><strong>Connection migration</strong> &ndash; a connection can survive switching from Wi-Fi to mobile data</li>
+            </ul>
+            <p>
+                HTTP/3 doesn't immediately replace HTTP/2. Servers usually offer HTTP/1.1, HTTP/2
+                and HTTP/3 together, and the browser picks the best one both sides support.
+            </p>
+        </section>
+
+        <!-- HTTP version timeline -->
+        <section>
+            <h2>Timeline</h2>
+            <ol id="timeline">
+                <li>
+                    <span class="year">1989</span>
+                    Tim Berners-Lee writes his proposal for the Web at CERN.
+                </li>
+                <li>
+                    <span class="year">1990</span>
+                    The first web server, website and browser are running at CERN.
+                </li>
+                <li>
+                    <span class="year">August 1991</span>
+                    The Web is announced publicly and the software is released. HTTP/0.9 is in use.
+                </li>
+                <li>
+                    <span class="year">April 30, 1993</span>
+                    CERN releases the Web software royalty-free, so anyone can use it.
+                </li>
+                <li>
+                    <span class="year">1996</span>
+                    HTTP/1.0 is documented as RFC 1945.
+                </li>
+                <li>
+                    <span class="year">1997</span>
+                    HTTP/1.1 is published as RFC 2068 (later revised in 1999, 2014 and 2022).
+                </li>
+                <li>
+                    <span class="year">May 2015</span>
+                    HTTP/2 is published as RFC 7540.
+                </li>
+                <li>
+                    <span class="year">May 2021</span>
+                    QUIC is published as RFC 9000.
+                </li>
+                <li>
+                    <span class="year">June 2022</span>
+                    HTTP/3 is published as RFC 9114.
+                </li>
+            </ol>
+        </section>
+
+        <!-- Version comparison table -->
+        <section>
+            <h2>Version Comparison</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Version</th>
+                        <th>Approx. Year</th>
+                        <th>Major Improvement</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>HTTP/0.9</td>
+                        <td>1991</td>
+                        <td>Simple one-line GET requests for HTML pages</td>
+                    </tr>
+                    <tr>
+                        <td>HTTP/1.0</td>
+                        <td>1996</td>
+                        <td>Headers, status codes and Content-Type</td>
+                    </tr>
+                    <tr>
+                        <td>HTTP/1.1</td>
+                        <td>1997</td>
+                        <td>Persistent connections and the required Host header</td>
+                    </tr>
+                    <tr>
+                        <td>HTTP/2</td>
+                        <td>2015</td>
+                        <td>Multiplexing, binary framing and header compression</td>
+                    </tr>
+                    <tr>
+                        <td>HTTP/3</td>
+                        <td>2022</td>
+                        <td>Runs over QUIC instead of TCP, with TLS 1.3 built in</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <!-- Why HTTP changed -->
+        <section>
+            <h2>Why HTTP Kept Changing</h2>
+            <p>
+                Looking at all five versions together, the basic request/response idea never went
+                away. A client asks, a server answers with a status code, headers and content.
+                What changed was everything around that conversation:
+            </p>
+            <ul>
+                <li><strong>Web pages got bigger.</strong> One HTML file turned into dozens of images, scripts and stylesheets, so HTTP had to get faster at fetching many files.</li>
+                <li><strong>The Web needed more than HTML.</strong> Headers and Content-Type made it flexible enough to carry anything.</li>
+                <li><strong>Security became required.</strong> Plain HTTP sends everything as readable text. HTTPS made encryption normal, and HTTP/3 makes it mandatory.</li>
+                <li><strong>People went mobile.</strong> Lossy networks and switching between Wi-Fi and cellular are a big part of why QUIC was created.</li>
+            </ul>
+            <p>
+                The early versions (0.9 to 1.1) added meaning to the protocol. HTTP/2 and HTTP/3
+                didn't change the meaning at all, only the delivery. That was only possible because
+                HTTP/1.1 defined the vocabulary so well in the first place.
+            </p>
+        </section>
+
+    </main>
+
+    <!-- Footer with required class project note -->
+    <footer>
+        <p>This website is a student project created for IT 3203 &ndash; Introduction to Web Development at Kennesaw State University.</p>
+        <p>Course website: <a href="https://ksuweb.github.io/IT3203/">ksuweb.github.io/IT3203</a></p>
+        <p>&copy; 2026 Emmanuel Orji</p>
+    </footer>
+
+</body>
+</html>

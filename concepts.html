@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Seven key concepts for understanding HTTP.">
+    <title>Key Concepts | The Evolution of HTTP</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <!-- Site header with title and main navigation -->
+    <header>
+        <p class="site-title">The Evolution of HTTP <span>| IT 3203 Project</span></p>
+
+        <!-- Main navigation -->
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="how-http-works.html">How HTTP Works</a></li>
+                <li><a href="evolution.html">Evolution</a></li>
+                <li><a href="concepts.html" class="current">Key Concepts</a></li>
+                <li><a href="resources.html">Resources</a></li>
+                <li><a href="about.html">About</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+
+        <h1>Key Concepts</h1>
+        <p class="page-intro">Seven ideas that explain most of how HTTP works.</p>
+
+        <!-- Concept 1 -->
+        <section class="concept">
+            <h2>1. Client and Server</h2>
+            <p>
+                HTTP has two roles. The client sends requests and the server answers them. The
+                client always speaks first, and a server never sends a page to a browser that
+                didn't ask for one.
+            </p>
+            <p class="example">Example: Chrome on your laptop is the client. The computer hosting the KSU website is the server.</p>
+        </section>
+
+        <!-- Concept 2 -->
+        <section class="concept">
+            <h2>2. Request and Response</h2>
+            <p>
+                Every HTTP exchange is one request followed by one response. The request says what
+                the client wants. The response says whether it worked and includes the content.
+                Loading one page usually takes many of these exchanges, one for each file.
+            </p>
+            <p class="example">Example: the browser requests <code>/index.html</code>, reads it, then sends separate requests for <code>styles.css</code> and each image on the page.</p>
+        </section>
+
+        <!-- Concept 3 -->
+        <section class="concept">
+            <h2>3. HTTP Methods</h2>
+            <p>
+                The method is the verb at the start of a request. <code>GET</code> reads something,
+                <code>POST</code> sends data, <code>PUT</code> replaces something,
+                <code>DELETE</code> removes it, and <code>HEAD</code> asks for just the headers.
+                Methods that only read are considered "safe" because they don't change anything on the server.
+            </p>
+            <p class="example">Example: viewing a post is a GET. Writing a comment on it is a POST.</p>
+        </section>
+
+        <!-- Concept 4 -->
+        <section class="concept">
+            <h2>4. Status Codes</h2>
+            <p>
+                Every response starts with a three-digit status code. The first digit gives the
+                category: 1xx informational, 2xx success, 3xx redirect, 4xx client error and
+                5xx server error.
+            </p>
+            <ul>
+                <li><code>200 OK</code> &ndash; the request worked</li>
+                <li><code>301 Moved Permanently</code> &ndash; the page has a new address</li>
+                <li><code>404 Not Found</code> &ndash; the server is fine, but nothing is at that address</li>
+                <li><code>500 Internal Server Error</code> &ndash; something broke on the server side</li>
+            </ul>
+            <p class="example">Example: typing <code>http://</code> instead of <code>https://</code> for many sites returns a 301 that sends you to the secure version.</p>
+        </section>
+
+        <!-- Concept 5 -->
+        <section class="concept">
+            <h2>5. HTTP Headers</h2>
+            <p>
+                Headers are <code>Name: value</code> lines that carry information about a message,
+                like what type of content it is or how long it can be cached. Because new headers
+                can be added without changing the protocol, headers are how most new HTTP features
+                were added over the years.
+            </p>
+            <p class="example">Example: <code>Content-Type: text/html</code> tells the browser to show the response as a web page instead of downloading it.</p>
+        </section>
+
+        <!-- Concept 6 -->
+        <section class="concept">
+            <h2>6. HTTPS and TLS</h2>
+            <p>
+                Plain HTTP is sent as readable text, so anyone on the path, like someone on the same
+                public Wi-Fi, can read or change it. HTTPS is the same HTTP sent through an encrypted
+                <strong>TLS</strong> connection. It uses port 443 instead of port 80, and the server
+                proves who it is with a certificate from a certificate authority.
+            </p>
+            <p>
+                HTTPS doesn't change any methods, headers or status codes. The request is identical.
+                It is just placed inside an encrypted tunnel before it leaves your device.
+            </p>
+            <p class="example">Example: the padlock in your browser's address bar means the page was loaded over HTTPS. Plain http:// pages are marked "Not secure."</p>
+        </section>
+
+        <!-- Concept 7 -->
+        <section class="concept">
+            <h2>7. Stateless Communication</h2>
+            <p>
+                HTTP is stateless, meaning the server doesn't remember previous requests. Each request
+                has to carry everything needed to answer it. This keeps servers simple and lets any one
+                of many identical servers handle your next request.
+            </p>
+            <p>Websites "remember" you by using cookies, which are just headers:</p>
+            <ol>
+                <li>You log in and the browser sends your username and password with a POST request.</li>
+                <li>The server replies with a <code>Set-Cookie</code> header.</li>
+                <li>The browser stores the cookie for that site.</li>
+                <li>Every later request to that site includes a <code>Cookie</code> header, so the server recognizes you.</li>
+            </ol>
+            <p class="example">Example: your shopping cart staying full as you click around a store is done with cookies, not by HTTP itself.</p>
+        </section>
+
+    </main>
+
+    <!-- Footer with required class project note -->
+    <footer>
+        <p>This website is a student project created for IT 3203 &ndash; Introduction to Web Development at Kennesaw State University.</p>
+        <p>Course website: <a href="https://ksuweb.github.io/IT3203/">ksuweb.github.io/IT3203</a></p>
+        <p>&copy; 2026 Emmanuel Orji</p>
+    </footer>
+
+</body>
+</html>

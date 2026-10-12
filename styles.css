@@ -1,0 +1,401 @@
+/*
+   styles.css
+   The Evolution of HTTP - IT 3203 Project Milestone #1
+   One stylesheet shared by every page on the site.
+*/
+
+/* ---------- Basic page setup (element selectors) ---------- */
+
+body {
+    margin: 0;
+    background-color: #f2f4f7;
+    color: #222222;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 17px;
+    line-height: 1.6;
+}
+
+h1,
+h2,
+h3 {
+    color: #1f2a44;
+    line-height: 1.3;
+}
+
+h1 {
+    font-size: 2rem;
+    margin-top: 0;
+}
+
+h2 {
+    font-size: 1.5rem;
+    margin-top: 36px;
+    padding-bottom: 6px;
+    border-bottom: 2px solid #d5dbe5;
+}
+
+h3 {
+    font-size: 1.2rem;
+    margin-bottom: 6px;
+}
+
+a {
+    color: #1d5fbf;
+}
+
+a:hover {
+    color: #0f3a78;
+    text-decoration: none;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+}
+
+/* ---------- Header and site title ---------- */
+
+header {
+    background-color: #1f2a44;
+    color: #ffffff;
+    padding: 18px 20px 0 20px;
+}
+
+/* Small site name shown above the navigation on every page */
+.site-title {
+    margin: 0 auto;
+    max-width: 960px;
+    font-size: 1.3rem;
+    font-weight: bold;
+}
+
+.site-title span {
+    color: #9fc1f0;
+    font-weight: normal;
+}
+
+/* ---------- Navigation styles ---------- */
+
+/* Flexbox puts the links in a row and lets them wrap on small screens */
+nav ul {
+    display: flex;
+    flex-wrap: wrap;
+    list-style: none;
+    margin: 12px auto 0 auto;
+    padding: 0;
+    max-width: 960px;
+}
+
+nav a {
+    display: block;
+    padding: 10px 16px;
+    color: #ffffff;
+    text-decoration: none;
+    border-bottom: 3px solid transparent;
+}
+
+/* Hover effect for the menu links */
+nav a:hover {
+    color: #ffffff;
+    background-color: #2d3c5e;
+    border-bottom: 3px solid #9fc1f0;
+}
+
+/* Highlights the page the visitor is currently on */
+nav a.current {
+    border-bottom: 3px solid #4f8fe6;
+    font-weight: bold;
+}
+
+/* ---------- Main content area ---------- */
+
+main {
+    max-width: 960px;
+    margin: 30px auto;
+    padding: 30px 40px;
+    background-color: #ffffff;
+    border: 1px solid #d5dbe5;
+}
+
+/* Short gray line under each page title */
+.page-intro {
+    font-size: 1.1rem;
+    color: #4a5568;
+    margin-top: -8px;
+}
+
+/* ---------- Home page ---------- */
+
+#cover {
+    text-align: center;
+    padding-bottom: 20px;
+    border-bottom: 1px solid #d5dbe5;
+}
+
+#cover h1 {
+    font-size: 2.5rem;
+    margin-bottom: 0;
+}
+
+#cover .subtitle {
+    font-size: 1.3rem;
+    color: #1d5fbf;
+    margin-top: 4px;
+}
+
+/* HTTP version progression shown as a row of boxes */
+.version-row {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 8px;
+    padding: 0;
+    list-style: none;
+}
+
+.version-row li {
+    padding: 6px 14px;
+    background-color: #eef3fb;
+    border: 1px solid #1d5fbf;
+    border-radius: 4px;
+    font-weight: bold;
+    color: #1f2a44;
+}
+
+.version-row .arrow {
+    padding: 0;
+    background-color: transparent;
+    border: none;
+    color: #888888;
+}
+
+/* Key terms use a simple two-column CSS Grid */
+.terms {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px 30px;
+}
+
+.terms dt {
+    font-weight: bold;
+    color: #1f2a44;
+}
+
+.terms dd {
+    margin: 0;
+}
+
+/* Table of contents list on the home page */
+.toc li {
+    margin-bottom: 6px;
+}
+
+/* ---------- Images and captions ---------- */
+
+figure {
+    margin: 24px 0;
+    text-align: center;
+}
+
+figure img {
+    border: 1px solid #c3cad6;
+}
+
+figcaption {
+    font-size: 0.9rem;
+    color: #555555;
+    margin-top: 6px;
+}
+
+/* ---------- Tables ---------- */
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 16px 0;
+}
+
+th,
+td {
+    border: 1px solid #c3cad6;
+    padding: 10px 12px;
+    text-align: left;
+    vertical-align: top;
+}
+
+th {
+    background-color: #1f2a44;
+    color: #ffffff;
+}
+
+/* Light stripe on every other row so the table is easier to read */
+tbody tr:nth-child(even) {
+    background-color: #f5f7fa;
+}
+
+/* ---------- Code examples ---------- */
+
+pre {
+    background-color: #1f2a44;
+    color: #e6edf7;
+    padding: 14px 18px;
+    border-radius: 4px;
+    overflow-x: auto;
+    font-size: 0.95rem;
+    line-height: 1.5;
+}
+
+code {
+    font-family: "Courier New", Courier, monospace;
+}
+
+/* Inline code inside normal sentences */
+p code,
+li code,
+td code {
+    background-color: #eef1f5;
+    padding: 1px 4px;
+    border-radius: 3px;
+}
+
+/* ---------- Note box (used a few times, not everywhere) ---------- */
+
+.note {
+    background-color: #eef3fb;
+    border: 1px solid #b8cdee;
+    padding: 12px 18px;
+    margin: 20px 0;
+}
+
+.note p {
+    margin: 0;
+}
+
+/* ---------- Timeline layout (Evolution page) ---------- */
+
+#timeline {
+    list-style: none;
+    margin: 20px 0;
+    padding: 0 0 0 24px;
+    border-left: 3px solid #1d5fbf;
+}
+
+#timeline li {
+    position: relative;
+    margin-bottom: 18px;
+}
+
+/* Small circle on the line next to each event */
+#timeline li::before {
+    content: "";
+    position: absolute;
+    left: -33px;
+    top: 6px;
+    width: 12px;
+    height: 12px;
+    background-color: #ffffff;
+    border: 3px solid #1d5fbf;
+    border-radius: 50%;
+}
+
+.year {
+    display: block;
+    font-weight: bold;
+    color: #1d5fbf;
+}
+
+/* ---------- Key concepts page ---------- */
+
+.concept {
+    padding-bottom: 10px;
+    border-bottom: 1px dashed #c3cad6;
+}
+
+.concept h2 {
+    border-bottom: none;
+}
+
+.example {
+    font-style: italic;
+    color: #3d4a5c;
+}
+
+/* ---------- References page ---------- */
+
+.reference-list li {
+    margin-bottom: 14px;
+}
+
+.used-for {
+    display: block;
+    font-size: 0.9rem;
+    color: #555555;
+}
+
+/* ---------- About page ---------- */
+
+.about-info {
+    display: flex;
+    gap: 40px;
+    flex-wrap: wrap;
+}
+
+.about-info section {
+    flex: 1;
+    min-width: 240px;
+}
+
+/* ---------- Footer ---------- */
+
+footer {
+    background-color: #1f2a44;
+    color: #d5dbe5;
+    text-align: center;
+    padding: 20px;
+    font-size: 0.9rem;
+}
+
+footer p {
+    margin: 4px 0;
+}
+
+footer a {
+    color: #9fc1f0;
+}
+
+footer a:hover {
+    color: #ffffff;
+}
+
+/* ---------- Small screens ---------- */
+
+@media (max-width: 700px) {
+    main {
+        margin: 0;
+        padding: 20px 16px;
+        border: none;
+    }
+
+    nav a {
+        padding: 8px 10px;
+    }
+
+    #cover h1 {
+        font-size: 2rem;
+    }
+
+    /* Stack the key terms into one column */
+    .terms {
+        grid-template-columns: 1fr;
+    }
+
+    /* Smaller table text so wide tables still fit */
+    table {
+        font-size: 0.85rem;
+    }
+
+    th,
+    td {
+        padding: 6px;
+    }
+}
