@@ -31,7 +31,122 @@
 
         <h1>HTTP Quiz</h1>
 
-        <!-- TODO: quiz form goes here -->
+        <p>
+            This quiz covers the How HTTP Works, Evolution and Key Concepts pages.
+            There are 10 questions worth 1 point each. You need 7/10 to pass,
+            and you have 10 minutes. The timer starts when the page loads, and the quiz
+            is submitted automatically if time runs out.
+        </p>
+
+        <!-- Countdown timer. quiz.js updates the time every second. -->
+        <p id="timer" class="quiz-timer">Time remaining: <strong id="time-left">10:00</strong></p>
+
+        <!-- Results summary. Hidden until the quiz is submitted. -->
+        <section id="results" class="quiz-results" hidden aria-live="polite">
+            <h2>Your Results</h2>
+            <p id="result-status" class="result-status"></p>
+            <p id="result-score"></p>
+            <p id="result-time"></p>
+            <p id="result-note"></p>
+            <p>Scroll down to see which questions you got right and wrong.</p>
+            <button type="button" id="retake-btn">Retake Quiz</button>
+        </section>
+
+        <!-- autocomplete="off" stops the browser from refilling old answers after a refresh -->
+        <form id="quiz-form" autocomplete="off">
+
+            <!-- Question 1: fill in the blank -->
+            <fieldset class="question">
+                <legend>1. What does HTTP stand for?</legend>
+                <label for="q1">Your answer:</label>
+                <input type="text" id="q1" name="q1" autocomplete="off">
+            </fieldset>
+
+            <!-- Question 2: fill in the blank -->
+            <fieldset class="question">
+                <legend>2. What does a 404 status code mean?</legend>
+                <label for="q2">Your answer:</label>
+                <input type="text" id="q2" name="q2" autocomplete="off">
+            </fieldset>
+
+            <!-- Question 3: multiple choice (radio buttons = only one answer) -->
+            <fieldset class="question">
+                <legend>3. Which HTTP method retrieves a resource?</legend>
+                <label><input type="radio" name="q3" value="POST"> POST</label>
+                <label><input type="radio" name="q3" value="GET"> GET</label>
+                <label><input type="radio" name="q3" value="PUT"> PUT</label>
+                <label><input type="radio" name="q3" value="DELETE"> DELETE</label>
+            </fieldset>
+
+            <!-- Question 4: multiple choice -->
+            <fieldset class="question">
+                <legend>4. Which HTTP version introduced persistent connections?</legend>
+                <label><input type="radio" name="q4" value="HTTP/0.9"> HTTP/0.9</label>
+                <label><input type="radio" name="q4" value="HTTP/1.0"> HTTP/1.0</label>
+                <label><input type="radio" name="q4" value="HTTP/1.1"> HTTP/1.1</label>
+                <label><input type="radio" name="q4" value="HTTP/2"> HTTP/2</label>
+            </fieldset>
+
+            <!-- Question 5: multiple choice -->
+            <fieldset class="question">
+                <legend>5. Which protocol does HTTP/3 use?</legend>
+                <label><input type="radio" name="q5" value="TCP"> TCP</label>
+                <label><input type="radio" name="q5" value="QUIC"> QUIC</label>
+                <label><input type="radio" name="q5" value="FTP"> FTP</label>
+                <label><input type="radio" name="q5" value="DNS"> DNS</label>
+            </fieldset>
+
+            <!-- Question 6: multiple choice -->
+            <fieldset class="question">
+                <legend>6. What does HTTPS use to encrypt communication?</legend>
+                <label><input type="radio" name="q6" value="DNS"> DNS</label>
+                <label><input type="radio" name="q6" value="QUIC"> QUIC</label>
+                <label><input type="radio" name="q6" value="TLS"> TLS</label>
+                <label><input type="radio" name="q6" value="Cookies"> Cookies</label>
+            </fieldset>
+
+            <!-- Question 7: multiple selection (checkboxes = can pick more than one) -->
+            <fieldset class="question">
+                <legend>7. Which features were introduced or standardized with HTTP/1.0? (Select all that apply.)</legend>
+                <label><input type="checkbox" name="q7" value="Version numbers"> Version numbers on every request</label>
+                <label><input type="checkbox" name="q7" value="Status codes"> Status codes</label>
+                <label><input type="checkbox" name="q7" value="Headers"> Headers on requests and responses</label>
+                <label><input type="checkbox" name="q7" value="Content-Type"> The Content-Type header</label>
+                <label><input type="checkbox" name="q7" value="Persistent connections"> Persistent connections</label>
+                <label><input type="checkbox" name="q7" value="Multiplexing"> Multiplexing</label>
+            </fieldset>
+
+            <!-- Question 8: multiple selection -->
+            <fieldset class="question">
+                <legend>8. Which of these are valid HTTP request methods? (Select all that apply.)</legend>
+                <label><input type="checkbox" name="q8" value="GET"> GET</label>
+                <label><input type="checkbox" name="q8" value="POST"> POST</label>
+                <label><input type="checkbox" name="q8" value="FETCH"> FETCH</label>
+                <label><input type="checkbox" name="q8" value="PUT"> PUT</label>
+                <label><input type="checkbox" name="q8" value="DELETE"> DELETE</label>
+                <label><input type="checkbox" name="q8" value="SEND"> SEND</label>
+                <label><input type="checkbox" name="q8" value="HEAD"> HEAD</label>
+            </fieldset>
+
+            <!-- Question 9: true/false using radio buttons -->
+            <fieldset class="question">
+                <legend>9. True or False: HTTP is a stateless protocol.</legend>
+                <label><input type="radio" name="q9" value="True"> True</label>
+                <label><input type="radio" name="q9" value="False"> False</label>
+            </fieldset>
+
+            <!-- Question 10: multiple choice -->
+            <fieldset class="question">
+                <legend>10. What is the purpose of the Content-Type header?</legend>
+                <label><input type="radio" name="q10" value="It tells which site the request is for"> It tells which site the request is for</label>
+                <label><input type="radio" name="q10" value="It tells what type of data the body contains"> It tells what type of data the body contains</label>
+                <label><input type="radio" name="q10" value="It encrypts the response"> It encrypts the response</label>
+                <label><input type="radio" name="q10" value="It sends the user's login cookie"> It sends the user's login cookie</label>
+            </fieldset>
+
+            <button type="submit" id="submit-btn">Submit Quiz</button>
+
+        </form>
 
     </main>
 
@@ -41,6 +156,9 @@
         <p>Course website: <a href="https://ksuweb.github.io/IT3203/">ksuweb.github.io/IT3203</a></p>
         <p>&copy; 2026 Emmanuel Orji</p>
     </footer>
+
+    <!-- Quiz timer and grading -->
+    <script src="quiz.js"></script>
 
 </body>
 </html>

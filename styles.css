@@ -345,6 +345,135 @@ td code {
     min-width: 240px;
 }
 
+/* ---------- Quiz page ---------- */
+
+/* Timer sits above the questions */
+.quiz-timer {
+    display: inline-block;
+    padding: 8px 14px;
+    background-color: #eef3fb;
+    border: 1px solid #b8cdee;
+}
+
+/* Last minute: turn the timer red so it is noticed */
+.quiz-timer.low-time {
+    background-color: #fbeeee;
+    border-color: #e0b4b4;
+    color: #9b1c1c;
+}
+
+/* Each question is a fieldset with the same spacing */
+.question {
+    margin: 0 0 20px 0;
+    padding: 14px 18px;
+    border: 1px solid #d5dbe5;
+}
+
+.question legend {
+    padding: 0 6px;
+    font-weight: bold;
+    color: #1f2a44;
+}
+
+/* One answer option per line, with room to tap on a phone */
+.question label {
+    display: block;
+    padding: 4px 0;
+    cursor: pointer;
+}
+
+.question input[type="radio"],
+.question input[type="checkbox"] {
+    margin-right: 8px;
+}
+
+.question input[type="text"] {
+    display: block;
+    width: 100%;
+    max-width: 420px;
+    margin-top: 4px;
+    padding: 8px 10px;
+    font-size: 1rem;
+    border: 1px solid #c3cad6;
+    box-sizing: border-box;
+}
+
+/* Clear focus ring for keyboard users */
+.question input:focus-visible,
+#quiz-form button:focus-visible,
+#retake-btn:focus-visible {
+    outline: 3px solid #4f8fe6;
+    outline-offset: 2px;
+}
+
+/* Bold the option the student picked */
+.question label:has(input:checked) {
+    font-weight: bold;
+    color: #1d5fbf;
+}
+
+/* Buttons match the dark blue header */
+#submit-btn,
+#retake-btn {
+    padding: 10px 22px;
+    font-size: 1rem;
+    color: #ffffff;
+    background-color: #1f2a44;
+    border: none;
+    cursor: pointer;
+}
+
+#submit-btn:hover,
+#retake-btn:hover {
+    background-color: #2d3c5e;
+}
+
+/* Subtle green/red after grading */
+.question.correct {
+    border-color: #9cc9a6;
+    border-left: 5px solid #2f7d43;
+    background-color: #f3faf4;
+}
+
+.question.incorrect {
+    border-color: #e0b4b4;
+    border-left: 5px solid #b03030;
+    background-color: #fdf4f4;
+}
+
+.feedback {
+    margin-top: 10px;
+    padding-top: 8px;
+    border-top: 1px dashed #c3cad6;
+    font-size: 0.95rem;
+}
+
+.feedback p {
+    margin: 2px 0;
+}
+
+/* Results summary box */
+.quiz-results {
+    margin: 20px 0 30px 0;
+    padding: 4px 20px 20px 20px;
+    background-color: #f5f7fa;
+    border: 1px solid #d5dbe5;
+}
+
+.result-status {
+    font-size: 1.6rem;
+    font-weight: bold;
+    margin: 8px 0;
+}
+
+.result-status.pass {
+    color: #2f7d43;
+}
+
+.result-status.fail {
+    color: #b03030;
+}
+
 /* ---------- Footer ---------- */
 
 footer {
@@ -397,5 +526,10 @@ footer a:hover {
     th,
     td {
         padding: 6px;
+    }
+
+    /* Less padding on quiz questions so they fit narrow screens */
+    .question {
+        padding: 10px 12px;
     }
 }
